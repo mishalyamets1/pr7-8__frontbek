@@ -4,7 +4,6 @@ const apiClient = axios.create({
   baseURL: '',
 });
 
-// Request interceptor: подставляем accessToken
 apiClient.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem('accessToken');
@@ -16,7 +15,6 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor: при 401 пробуем обновить токен
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
